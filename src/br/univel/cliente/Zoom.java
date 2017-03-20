@@ -1,0 +1,22 @@
+package br.univel.cliente;
+
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+import br.univel.comum.CONSTANTES;
+import br.univel.comum.Plact;
+
+public class Zoom{
+	
+	public Zoom() throws Exception{
+		Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1818);
+		Plact servico = (Plact) registry.lookup(Plact.NOME);
+		Integer retorno = servico.calcule(CONSTANTES.RA_DEZENA);
+		System.out.println(retorno);
+	}
+	
+	public static void main(String[] args) throws Exception{
+		new Zoom();
+	}
+}
